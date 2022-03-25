@@ -107,9 +107,11 @@ resource "azurerm_virtual_machine" "catapp" {
   location            = var.location
   resource_group_name = azurerm_resource_group.myresourcegroup.name
   vm_size             = var.vm_size
+  Department          = "devops"
 
   network_interface_ids         = [azurerm_network_interface.catapp-nic.id]
   delete_os_disk_on_termination = "true"
+
 
   storage_image_reference {
     publisher = var.image_publisher
@@ -134,7 +136,7 @@ resource "azurerm_virtual_machine" "catapp" {
   os_profile_linux_config {
     disable_password_authentication = false
   }
-
+  
   tags = {}
 
   # Added to allow destroy to work correctly.
